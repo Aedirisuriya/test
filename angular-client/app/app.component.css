@@ -1,0 +1,30 @@
+.container {
+  font-family: Arial;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sub-container {
+  width: 75%;
+  min-width: 500px;
+  margin: auto;
+}
+
+.welcome-card, .question-card, .summary-card {
+  padding: 20px;
+} 
+
+.question-card {
+  text-align: left;
+}
+
+.question-card__title {
+  padding: 20px 5px;
+}
+
+.btn {
+  background-color:rgb(14, 14, 116);
+  color: #fff;
+  padding: 10px 20px;
+  margin: 20px 5px;
+}

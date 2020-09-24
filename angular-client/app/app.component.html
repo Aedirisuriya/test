@@ -1,0 +1,67 @@
+<div class="container">
+	<div>
+		<h2>Quiz Application &#x263A;</h2>
+	</div>
+	<div class="welcome-card" *ngIf="quizStatus === null">
+		<div>
+			<h3>Choose Option &#x263A; </h3>
+			<div>
+				<div>
+					<button class="btn" (click)="startQuiz()">
+            Start Quiz </button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="question-card" *ngIf="quizStatus === 'INPROGRESS'">
+		<div class="sub-container">
+			<form #questionTest="ngForm" novalidate>
+				<div>
+					<div class="question-card__title" [innerHTML]="currentQuestion.question"></div>
+					<div>
+						<div *ngIf="currentQuestion.type !== 'text'">
+							<div *ngFor="let option of currentQuestion.incorrect_answers; let indx = index;">
+								<input type="radio" name="{{currentQuestion.category}}" [(ngModel)]="selectedAnswer" value="{{option}}" id="opt-{{indx}}">
+								<label for="opt-{{indx}}">{{option}}</label>
+							</div>
+							<div>
+								<input id="opt-x" type="radio" name="{{currentQuestion.category}}" [(ngModel)]="selectedAnswer" value="{{currentQuestion.correct_answer}}">
+								<label for="opt-x">{{currentQuestion.correct_answer}}</label>
+							</div>
+						</div>
+						<div *ngIf="currentQuestion.type === 'text'">
+							<input type="text" [(ngModel)]="selectedAnswer"/>
+            </div>
+						</div>
+					</div>
+			</form>
+			<div>
+				<button class="btn" type="button" (click)="nextQuestion()">Next</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="summary-card" *ngIf="quizStatus === 'COMPLETED'">
+		<div role="document" class="sub-container">
+			<div>
+				<h2>SUMMARY</h2>
+				<div>
+					<div>Total Questions: <strong>{{allQuestions.length}}</strong> </div>
+					<div>Correct: <strong>{{rightAnswered}}</strong> </div>
+					<div>
+						Wrong: <strong>{{wrongAnswered}}</strong>
+					</div>
+					<div>
+						Questions answered: <strong>{{totalAnswered}}</strong>
+					</div>
+					<div>
+						Final Score: <strong>{{finalScore}}%</strong>
+					</div>
+					<button type="button" class="btn" click="restartQuiz()">Restart Quiz</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
